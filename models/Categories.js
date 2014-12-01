@@ -4,7 +4,7 @@
 
 
 var mongoose = require('mongoose');
-var CommentSchema = new mongoose.Schema({
+var CategorySchema = new mongoose.Schema({
 	title: String,
 	post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
 });

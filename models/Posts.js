@@ -2,6 +2,7 @@
  * Database schema for posts
  */
 
+var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema({
 	author: String,
