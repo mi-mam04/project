@@ -1,18 +1,47 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <title>Project</title>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
-    <script src="/javascripts/angularApp.js"></script>
-    
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    
-  </head>
-  <body ng-app="project" ng-controller="MainController">
-    <h1>Project</h1>
-    <p>Welcome to our project</p>
-    {{"It is working!"}}
-    {{test}}
-  </body>
-</html>
+	<head>
+    	<title>Project</title>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+	    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.11/angular-ui-router.min.js"></script>
+		<script src="/javascripts/angularApp.js"></script> 
+			
+	</head>
+	
+	<body ng-app="project"> 
+
+		<div>
+       		<ui-view></ui-view>
+     	</div>
+     	
+     	<!-- Home template -->
+		<script type="text/ng-template" id="/home.html"> 
+			<div class="page-header">
+				<h1>Home page</h1>
+				<div ng-repeat = "post in posts">
+       				{{post}}
+       				<span>
+						<a href="#/posts/{{$index}}">Rating</a>
+					</span>
+     			</div>
+     	
+     			<form ng-submit="addPost()">
+					Title<input type="text" ng-model="title"></input>
+					Description<input type="text" ng-model="body"></input> 
+					Author<input type="text" ng-model="author"></input> 
+					<button type="submit">Post</button>
+				</form>
+				 
+			</div>
+		</script>
+		
+		<!-- Posts template -->
+		<script type="text/ng-template" id="/posts.html"> 
+			
+        	<form ng-submit="addRating()"> 
+        		<button type="submit">Add</button>
+        	</form>
+        </script> 
+     	
+   </body>
+ </html>

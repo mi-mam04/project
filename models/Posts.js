@@ -5,11 +5,11 @@
 var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema({
-	author: String,
+	author: { type: mongoose.Schema.Types.ObjectId, ref: 'Author' },
 	title: String,
+	author: String,
 	body: String,
-	rating: Number,
-	category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }]
+	category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
 });
 
 mongoose.model('Post', PostSchema);

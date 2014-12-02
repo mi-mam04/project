@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 // Connect to database
 var mongoose = require('mongoose');
+
 var uri = "mongodb://localhost/project";
 mongoose.connect(uri, function(err, db) {
 	if (err) {
@@ -20,6 +21,7 @@ mongoose.connect(uri, function(err, db) {
 // Initialise database schemas
 require('./models/Posts');
 require('./models/Categories');
+require('./models/Ratings');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
