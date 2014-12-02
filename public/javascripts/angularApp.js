@@ -1,6 +1,6 @@
 angular.module('project', [])
 
-.controller('MainCtrl', [
+.controller('MainController', [
 '$scope',
 function($scope){
   $scope.test = 'Hello world!';
