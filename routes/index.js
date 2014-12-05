@@ -9,7 +9,6 @@ router.get('/', function(req, res) {
 var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 var Category = mongoose.model('Category');
-var Rating = mongoose.model('Rating');
 
 /* 
  * Database test: obsolete

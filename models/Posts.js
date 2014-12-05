@@ -10,6 +10,8 @@ var PostSchema = new mongoose.Schema({
 	author: String,
 	body: String,
 	category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
+	avgRating: Number,
+	ratings: [Number]
 });
 
 mongoose.model('Post', PostSchema);

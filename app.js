@@ -21,7 +21,6 @@ mongoose.connect(uri, function(err, db) {
 // Initialise database schemas
 require('./models/Posts');
 require('./models/Categories');
-require('./models/Ratings');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
