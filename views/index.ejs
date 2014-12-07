@@ -25,9 +25,8 @@
 	
 	<div id="postlist">
 		<div>
-			{{2+2}}
 			<!-- For each post in $scope.posts -->
-			<div ng-repeat="post in posts">{{post}}</div>
+			<div ng-repeat="post in posts">{{post.title}} - {{post.body}} <br> - {{post.author}}</div>
 
 		</div>
 	</div>
