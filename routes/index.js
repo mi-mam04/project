@@ -1,68 +1,51 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
-
 var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 var Category = mongoose.model('Category');
 
-/* 
- * Database test: obsolete
- * var testAuthor = new Author({name: 'Jaap'});
- * testAuthor.save(function (err, testAuthor) {
- * 	  if (err) return console.error(err);
- * 	  console.log("Creating " + testAuthor.name + "...");
- * 	});
- * 
- * var query = Author.findOne({ 'name': 'Jaap' });
- * query.select('name');
- * query.exec(function (err, author) {
- * 	  if (err) return handleError(err);
- * 	  console.log('We found %s!', author.name);
- * 	});
- */
+/* GET home page. */
+router.get('/', function(req, res) {
+	res.render('index', {
+		title : 'Express'
+	});
+});
 
+/* GET posts page. */
+router.get('/api/posts', function(req, res) {
 
-// Getting posts
-router.get('/posts', function(req, res, next) { 
-	Post.find(function(err, posts){
-		if(err){ 
-			return next(err); 
-		}
+	// Search for all posts
+	Post.find(function(err, posts) {
+		if (err)
+			res.send(err);
+
+		// Return all posts
 		res.json(posts);
-   });
+	});
 });
 
-// Submitting posts
-router.post('/posts', function(req, res, next) { 
-	var post = new Post(req.body);
-	post.save(function(err, post){ 
-		if(err){ 
-			return next(err); 
+/* POST Add post */
+router.post('/api/posts', function(req, res) {
+
+	// Create post from Angular info
+	Post.create({
+		title : req.body.title,
+		body : req.body.body,
+		author : req.body.author
+	}, function(err, post) {
+		if (err)
+			res.send(err);
+
+		// get and return all the posts after creation
+		Post.find(function(err, posts) {
+			if (err) {
+				res.send(err);
 			}
-		res.json(post);
-   });
-});
+			res.json(posts);
+		});
+	});
 
-// Pre-loading a single post
-router.param('post', function(req, res, next, id) {
-	var query = Post.findById(id);
-	query.exec(function (err, post){
-	if (err) { return next(err); }
-	if (!post) { return next(new Error("Cannot find post")); }
-	     req.post = post;
-	     return next();
-	   });
 });
-
-// Getting a single post
-router.get('/posts/:post', function(req, res) { 
-	res.json(req.post);
-});
-
 
 module.exports = router;

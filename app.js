@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 
 // Connect to database
 var mongoose = require('mongoose');
+var uri = 'mongodb://localhost/project';
 
-var uri = "mongodb://localhost/project";
 mongoose.connect(uri, function(err, db) {
 	if (err) {
 		console.log("Unable to connect to database");
@@ -40,6 +40,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', routes);
 app.use('/users', users);
@@ -74,5 +75,6 @@ app.use(function(err, req, res, next) {
 		error : {}
 	});
 });
+
 
 module.exports = app;

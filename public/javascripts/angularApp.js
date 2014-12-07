@@ -1,89 +1,29 @@
-// Create module
-angular.module('project', [ 'ui.router' ])
+var project = angular.module('project', []);
 
-// Configure routes
-.config(
-		[ '$stateProvider', '$urlRouterProvider',
-				function($stateProvider, $urlRouterProvider) {
+function MainController($scope, $http) {
+    $scope.formData = {};
 
-					// Set home state
-					$stateProvider
-					.state('home', {
-						url : '/home',
-						templateUrl : '/home.html',
-						controller : 'MainCtrl'
-					})
-					// If state unspecified, set to home
-					
+    // Get all posts
+    $http.get('/api/posts')
+        .success(function(data) {
+            $scope.posts = data;
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('An error has occured: ' + data);
+        });
 
-					// Set posts state
-					.state('posts', {
-						url : '/posts/{id}',
-						templateUrl : '/posts.html',
-						controller : 'PostsCtrl'
-					});
-					
-					$urlRouterProvider.otherwise('home');
-				} ])
-
-// Create service
-.factory('posts', [ function() {
-	// service body
-	var o = {
-		posts : [ {
-			title: 'post 1',
-		    body: 'test',
-			author: 'author 1',},
-			{	
-			title: 'post 2',
-			body: 'test',
-			author: 'author 2',}
-			]
-	};
-	return o;
-
-} ])
-
-// Create main controller
-.controller('MainCtrl', [
-// Create var scope and inject posts from factory
-'$scope', 'posts', function($scope, posts) {
-	$scope.posts = posts.posts;
-	$scope.test = 'Hello project!';
-
-	$scope.addPost = function() {
-		if ($scope.title === '' || $scope.author === '') {
-			return;
-		}
-		$scope.posts.push({
-			title : $scope.title,
-			body : $scope.body,
-			author : $scope.author
-		});
-		$scope.title = '';
-		$scope.body = '';
-		$scope.author = '';
-	};
-
-	
-
-} ])
-
-.controller(
-		'PostsCtrl',
-		[ '$scope', '$stateParams', 'posts',
-				function($scope, $stateParams, posts) {
-					$scope.post = posts.posts[$stateParams.id];
-					
-					// Add a rating
-					$scope.addRating = function() {
-						if ($scope.body === '') {
-							return;
-						}
-						$scope.post.ratings.push({
-							rating : $scope.rating,
-						});
-						$scope.body = '';
-						$scope.author = '';
-					};
-				} ]);
+    // when submitting the add form, send the text to the node API
+    $scope.addPost = function() {
+        $http.post('/api/posts', $scope.formData)
+            .success(function(data) {
+            	// clear the form
+                $scope.formData = {}; 
+                $scope.posts = data;
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('An error has occured: : ' + data);
+            });
+    };
+};
