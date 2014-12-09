@@ -62,13 +62,31 @@
 					</div>
 					<br>
 					<div class="table-responsive">
+						<h4>Posts</h4>
+						<a href="" ng-click="predicate=''"><button
+								class="btn btn-default">unsort</button></a> <br> <br>
 						<table class="table">
 							<tr>
-								<th>Posts</th>
+								<th><a href=""
+									ng-click="predicate = 'title'; reverse=false">Title</a> (<a
+									href="" ng-click="predicate = '-title'; reverse=false">^</a>)</th>
+								<th><a href="" ng-click="predicate = 'body'; reverse=false">Body</a>
+									(<a href="" ng-click="predicate = '-body'; reverse=false">^</a>)
+								</th>
+								<th><a href=""
+									ng-click="predicate = 'author'; reverse=false">Author</a> (<a
+									href="" ng-click="predicate = '-author'; reverse=false">^</a>)
+								</th>
+								<th><a href=""
+									ng-click="predicate = 'category'; reverse=false">Category</a> (<a
+									href="" ng-click="predicate = '-category'; reverse=false">^</a>)
+								</th>
 							</tr>
-							<tr ng-repeat="post in posts">
-								<td>{{post.title}} - {{post.body}} - {{post.author}} -
-									{{post.category}}</td>
+							<tr ng-repeat="post in posts | orderBy:predicate:reverse">
+								<td>{{post.title}}</td>
+								<td>{{post.body}}</td>
+								<td>{{post.author}}</td>
+								<td>{{post.category}}</td>
 							</tr>
 						</table>
 					</div>
@@ -80,7 +98,7 @@
 					ng-controller="SearchController">
 					<h4>Occurences per category</h4>
 					<a href="" ng-click="predicate=''"><button
-								class="btn btn-default">unsort</button></a> <br> <br>
+							class="btn btn-default">unsort</button></a> <br> <br>
 					<div class="table-responsive">
 						<table class="table">
 							<tr>
@@ -104,7 +122,7 @@
 					ng-controller="SearchController">
 					<h4>Posts per author</h4>
 					<a href="" ng-click="predicate=''"><button
-								class="btn btn-default">unsort</button></a> <br> <br>
+							class="btn btn-default">unsort</button></a> <br> <br>
 					<div class="table-responsive">
 						<table class="table">
 							<tr>
