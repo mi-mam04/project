@@ -78,26 +78,46 @@
 			<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
 				<div class="sidebar-module sidebar-module-inset"
 					ng-controller="SearchController">
+					<h4>Occurences per category</h4>
+					<a href="" ng-click="predicate=''"><button
+								class="btn btn-default">unsort</button></a> <br> <br>
 					<div class="table-responsive">
 						<table class="table">
 							<tr>
-								<th>Occurences per category</th>
+								<th><a href="" ng-click="predicate = '_id'; reverse=false">Category</a>
+									(<a href="" ng-click="predicate = '-_id'; reverse=false">^</a>)
+								</th>
+								<th><a href=""
+									ng-click="predicate = 'value'; reverse=!reverse">Number of
+										posts</a></th>
 							</tr>
-							<tr ng-repeat="category in categories">
-								<td>{{category._id}}: {{category.value}}</td>
+
+							<tr
+								ng-repeat="category in categories | orderBy:predicate:reverse">
+								<td>{{category._id}}</td>
+								<td>{{category.value}}</td>
 							</tr>
 						</table>
 					</div>
 				</div>
 				<div class="sidebar-module sidebar-module-inset"
 					ng-controller="SearchController">
+					<h4>Posts per author</h4>
+					<a href="" ng-click="predicate=''"><button
+								class="btn btn-default">unsort</button></a> <br> <br>
 					<div class="table-responsive">
 						<table class="table">
 							<tr>
-								<th>Posts per author</th>
+								<th><a href="" ng-click="predicate = '_id'; reverse=false">Author</a>
+									(<a href="" ng-click="predicate = '-_id'; reverse=false">^</a>)
+								</th>
+								<th><a href=""
+									ng-click="predicate = 'value'; reverse=!reverse">Number of
+										posts</a></th>
 							</tr>
-							<tr ng-repeat="author in authors">
-								<td>{{author._id}}: {{author.value}}</td>
+							<tr ng-repeat="author in authors | orderBy:predicate:reverse">
+								<td>{{author._id}}</td>
+								<td>{{author.value}}</td>
 							</tr>
 						</table>
 					</div>

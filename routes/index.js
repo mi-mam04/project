@@ -56,7 +56,6 @@ router.get('/api/posts/category', function(req, res) {
 	var o = {};
 	// Map
 	o.map = function() {
-		// console.log(this.author);
 		// Store data in temp hash table
 		emit(this.category, 1);
 	};
@@ -84,7 +83,6 @@ router.get('/api/posts/category', function(req, res) {
 			if (err) {
 				console.log(err);
 			}
-			console.log(docs);
 			result = docs;
 			res.json(docs);
 		});
@@ -99,7 +97,6 @@ router.get('/api/posts/author', function(req, res) {
 	var o = {};
 	// Map
 	o.map = function() {
-		// console.log(this.author);
 		// Store data in temp hash table
 		emit(this.author, 1);
 	};
@@ -127,7 +124,6 @@ router.get('/api/posts/author', function(req, res) {
 			if (err) {
 				console.log(err);
 			}
-			console.log(docs);
 			result = docs;
 			res.json(docs);
 		});
