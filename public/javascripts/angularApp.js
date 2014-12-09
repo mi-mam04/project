@@ -30,4 +30,11 @@ function SearchController($scope, $http) {
 	}).error(function(data) {
 		console.log('An error has occured: ' + data);
 	});
+	
+	$http.get('/api/posts/author').success(function(data) {
+		$scope.authors = data;
+	}).error(function(data) {
+		console.log('An error has occured: ' + data);
+	});
+	
 };

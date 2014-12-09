@@ -60,7 +60,7 @@
 							</form>
 						</div>
 					</div>
-
+					<br>
 					<div class="table-responsive">
 						<table class="table">
 							<tr>
@@ -85,6 +85,19 @@
 							</tr>
 							<tr ng-repeat="category in categories">
 								<td>{{category._id}}: {{category.value}}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="sidebar-module sidebar-module-inset"
+					ng-controller="SearchController">
+					<div class="table-responsive">
+						<table class="table">
+							<tr>
+								<th>Posts per author</th>
+							</tr>
+							<tr ng-repeat="author in authors">
+								<td>{{author._id}}: {{author.value}}</td>
 							</tr>
 						</table>
 					</div>
