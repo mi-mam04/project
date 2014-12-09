@@ -32,7 +32,8 @@ router.post('/api/posts', function(req, res) {
 	Post.create({
 		title : req.body.title,
 		body : req.body.body,
-		author : req.body.author
+		author : req.body.author,
+		category: req.body.category
 	}, function(err, post) {
 		if (err)
 			res.send(err);
@@ -46,6 +47,50 @@ router.post('/api/posts', function(req, res) {
 		});
 	});
 
+});
+
+
+/* GET posts per category */
+router.get('/api/posts/category', function(req, res) {
+
+	var o = {};
+	// Map
+	o.map = function() {
+		// console.log(this.author);
+		// Store data in temp hash table
+		emit(this.category, 1);
+	};
+	// Reduce
+	o.reduce = function(k, count) {
+		// Sum the counts to retrieve all
+		return Array.sum(count);
+	};
+	// Outfile
+	o.out = {
+		replace : 'categoryResults'
+	};
+	// Turn on stats
+	o.verbose = true;
+	
+	// Run MapReduce function
+	Post.mapReduce(o, function(err, results, stats) {
+		if (err) {
+			res.send(err);
+		}
+		
+		// Check runtime
+		console.log("Running MapReduce cost %d ms", stats.processtime);		
+		results.find(function(err, docs) {
+			if (err) {
+				console.log(err);
+			}
+			console.log(docs);
+			result = docs;
+			res.json(docs);
+		});
+
+	});
+	
 });
 
 module.exports = router;

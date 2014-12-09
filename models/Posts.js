@@ -8,7 +8,8 @@ var PostSchema = new mongoose.Schema({
 	title: String,
 	author: String,
 	body: String,
-	category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
+	category: String
 });
 
 mongoose.model('Post', PostSchema);
+

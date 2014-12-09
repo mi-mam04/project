@@ -63,6 +63,7 @@ if (app.get('env') === 'development') {
 			message : err.message,
 			error : err
 		});
+		console.log(err.stack);
 	});
 }
 
@@ -72,7 +73,7 @@ app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
 	res.render('error', {
 		message : err.message,
-		error : {}
+		error : err
 	});
 });
 
