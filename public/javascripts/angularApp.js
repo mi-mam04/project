@@ -13,13 +13,13 @@ function MainController($scope, $http) {
 
 	// Post a post
 	$scope.addPost = function() {
-		$http.post('/api/posts', $scope.formData).success(function(data) {
-			// clear the form
-			$scope.formData = {};
-			$scope.posts = data;
-		}).error(function(data) {
-			console.log('An error has occured: ' + data);
-		});
+			$http.post('/api/posts', $scope.formData).success(function(data) {
+				// clear the form
+				$scope.formData = {};
+				$scope.posts = data;
+			}).error(function(data) {
+				console.log('An error has occured: ' + data);
+			});
 	};
 };
 
@@ -30,11 +30,11 @@ function SearchController($scope, $http) {
 	}).error(function(data) {
 		console.log('An error has occured: ' + data);
 	});
-	
+
 	$http.get('/api/posts/author').success(function(data) {
 		$scope.authors = data;
 	}).error(function(data) {
 		console.log('An error has occured: ' + data);
 	});
-	
+
 };
