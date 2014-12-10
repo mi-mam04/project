@@ -3,7 +3,6 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
-var Category = mongoose.model('Category');
 
 /* GET home page. */
 router.get('/', function(req, res) {

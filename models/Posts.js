@@ -12,4 +12,3 @@ var PostSchema = new mongoose.Schema({
 });
 
 mongoose.model('Post', PostSchema);
-
