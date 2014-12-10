@@ -18,17 +18,25 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
+<!-- Custom css -->
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
+
 </head>
 
 <body>
 	<div class="container">
 
-		<div class="blog-header">
-			<h1 class="blog-title">CARL</h1>
-			<p class="lead blog-description">Community Acquired Resolution
-				List</p>
-		</div>
+		<div class="row">
+			<div class="blog-header">
+				<div class="col-md-4 col-sm-4 col-xs-4">
+					<h1 class="blog-title">CARL</h1>
+					<p class="lead blog-description">Community Acquired Resolution
+						List</p>
+				</div>
+				<img src="/images/itssomething.png" class="img-responsive carl" id="carl" alt="CARL logo">
 
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-sm-8 blog-main" ng-controller="MainController">
 
@@ -73,8 +81,10 @@
 							</form>
 						</div>
 						<br>
+						<h5>All posts with filter: {{searchText}}</h5>
 						<a href="" ng-click="predicate=''"><button
-								class="btn btn-default">Sort by date of submission (oldest first)</button></a> <br> <br>
+								class="btn btn-default">Sort by date of submission
+								(oldest first)</button></a> <br> <br>
 						<table class="table">
 							<tr>
 								<th><a href=""
@@ -104,7 +114,8 @@
 					ng-controller="SearchController">
 					<h4>Posts per category</h4>
 					<a href="" ng-click="predicate=''"><button
-							class="btn btn-default">Sort by date of submission (oldest first)</button></a> <br> <br>
+							class="btn btn-default">Sort by date of submission
+							(oldest first)</button></a> <br> <br>
 					<div class="table-responsive">
 						<table class="table">
 							<tr>
@@ -127,7 +138,8 @@
 					ng-controller="SearchController">
 					<h4>Posts per author</h4>
 					<a href="" ng-click="predicate=''"><button
-							class="btn btn-default">Sort by date of submission (oldest first)</button></a> <br> <br>
+							class="btn btn-default">Sort by date of submission
+							(oldest first)</button></a> <br> <br>
 					<div class="table-responsive">
 						<table class="table">
 							<tr>
